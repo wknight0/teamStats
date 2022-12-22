@@ -1,74 +1,44 @@
-const getUserChoice = userInput =>
+const team =
 {
-  userInput = userInput.toLowerCase();
-
-  if (userInput === 'rock')
+  _players: [
+    {firstName: 'Pete', lastName: 'Wheeler', age: 54}, 
+    {firstName: 'David', lastName: 'Peterson', age: 44}, 
+    {firstName: 'Andy', lastName: 'Guy', age: 34}
+  ],
+  _games: [
+    {opponent: 'Jets', teamPoints: 42, opponentPoints: 27}, 
+    {opponent: 'Giants', teamPoints: 45, opponentPoints: 12}, 
+    {opponent: 'Eagles', teamPoints: 31, opponentPoints: 15}
+  ],
+  get players () 
   {
-    return userInput;
-  }
-  else if (userInput === 'paper')
+    return this._players;
+  },
+  get games ()
   {
-    return userInput;
-  }
-  else if (userInput === 'scissors')
+    return this._games;
+  },
+  addPlayer(newFirstName, newLastName, newAge)
   {
-    return userInput;
-  }
-  else
+    let player = {
+      firstName: newFirstName,
+      lastName: newLastName,
+      age: newAge
+    };
+    this.players.push(player);
+  },
+  addGame(newOpponent, newTeamPoints, newOpponentPoints)
   {
-    console.log("Error, not a valid choice...");
-  }
-} 
-
-function getComputerChoice()
-{
-  let num = Math.floor(Math.random() * 3);
-
-  if (num === 0)
-  {
-    return 'rock';
-  }
-  else if (num === 1)
-  {
-    return 'paper';
-  }
-  else if (num === 2)
-  {
-    return 'scissors';
+    let game = {
+      opponent: newOpponent,
+      teamPoints: newTeamPoints,
+      opponentPoints: newOpponentPoints
+    };
+    this.games.push(game);
   }
 }
 
-function determineWinner(userChoice, computerChoice)
-{
-  if (userChoice === computerChoice)
-  {
-    return "TIE";
-  }
-  else if (userChoice === 'rock' && computerChoice === 'scissors')
-  {
-    return "YOU WIN";
-  }
-  else if (userChoice === 'paper' && computerChoice === 'rock')
-  {
-    return "YOU WIN";
-  }
-  else if (userChoice === 'scissors' && computerChoice === 'paper')
-  {
-    return "YOU WIN";
-  }
-  else
-  {
-    return "YOU LOSE";
-  }
-}
+team.addPlayer('Bugs', 'Bunny', 76);
+team.addGame('Titans', 100, 98);
 
-function playGame()
-{
-  let userChoice = getUserChoice('paper');
-  let computerChoice = getComputerChoice();
-  console.log(`Player chose ${userChoice.toUpperCase()} and Computer chose ${computerChoice.toUpperCase()}!`);
-
-  console.log(determineWinner(userChoice, computerChoice));
-}
-
-playGame();
+console.log(team);
